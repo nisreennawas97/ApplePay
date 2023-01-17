@@ -5,7 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const app = express();
 const port = 3001
-app.get('/', async (req, res)  => { 
+app.get('/apple-pay', async (req, res)  => { 
     try {
         const URL = 'https://apple-pay-gateway.apple.com/paymentservices/startSession';
         // use set the certificates for the POST request
