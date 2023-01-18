@@ -41,6 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const applePaySession = new ApplePaySession(3, request);
         console.log('Apple Pay Session:', applePaySession);
 
+        applePaySession.begin();
+
         //This is the first event that apple triggers. Here you need to validate the
         //Apple pay session from Backend
         applePaySession.onvalidatemerchant = async (event) => {
@@ -56,11 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'onvalidatemerchant (checkout) merchantSession:',
                 merchantSession
             );
-            try{
-                applePaySession.completeMerchantValidation(merchantSession); 
-            } catch(err){
-                console.log('completeMerchantValidation err', err);
-            }
+            applePaySession.completeMerchantValidation(merchantSession); 
         };
 
         // Define ApplePayPaymentMethodUpdate based on the selected payment method.
@@ -139,6 +137,5 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log('oncancel:', event);
         };
 
-        applePaySession.begin();
     });
 }, false);
