@@ -1,0 +1,9 @@
+.apple-pay-button {
+    width: 250px;
+    height: 40px;
+    -webkit-appearance: -apple-pay-button;
+}
+
+#success {
+    display: none;
+}
