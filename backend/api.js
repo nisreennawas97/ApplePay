@@ -15,7 +15,7 @@ app.use(function(req, res, next) {
 
 app.get('/', (req, res) => {res.send('Hello World1!')})
 
-app.get('/validate-merchant', async (req, res)  => { 
+app.post('/validate-merchant', async (req, res)  => { 
     try {
         const appleUrl = req?.body?.appleUrl || 'https://apple-pay-gateway.apple.com/paymentservices/startSession';
         // use set the certificates for the POST request
