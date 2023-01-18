@@ -13,6 +13,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.get('/', (req, res) => {res.send('Hello World!')})
+
 app.get('/validate-merchant', async (req, res)  => { 
     try {
         const appleUrl = req?.body?.appleUrl || 'https://apple-pay-gateway.apple.com/paymentservices/startSession';
