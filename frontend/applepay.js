@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
             total: { 
                 label: 'Product Name', 
-                amount: '1',
+                amount: 10,
                 type: 'final'
             }
         };
@@ -92,13 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     itemId: '12345',
                     name: 'prod1',
                     quantity: '2',
-                    unitPrice: '456'
+                    unitPrice: 10
                 }
             };
             const body = {
                 transactionRequest: {
                     transactionType: 'authCaptureTransaction',
-                    amount: '1',
+                    amount: '10',
                     payment: {
                     opaqueData: {
                         dataDescriptor: 'COMMON.APPLE.INAPP.PAYMENT',
