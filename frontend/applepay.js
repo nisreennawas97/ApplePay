@@ -1,6 +1,5 @@
-const axios = require('axios');
 var MERCHANT_IDENTIFIER = 'merchant.apple.itg.test';
-const NGROK_HTTPS_HOST = 'https://e5fe-188-161-238-9.ngrok.io';
+const NGROK_HTTPS_HOST = 'https://b9d1-188-161-238-9.ngrok.io';
 
 var appleButton = document.querySelector('.apple-pay-button');
 
