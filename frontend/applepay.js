@@ -112,7 +112,7 @@ document.addEventListener('click', function() {
 
         const {
             data: { transactionResponse, messages },
-        } = await axios.post('/authorizeNetApi', body);
+        } = await axios.post(`${NGROK_HTTPS_HOST}/authorizeNetApi`, body);
 
         let result = '';
         if (messages.resultCode && messages.resultCode === 'Ok') {
