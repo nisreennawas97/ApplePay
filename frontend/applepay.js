@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 //Handel the apple pay button click
-document.addEventListener('click', function() {
+appleButton.addEventListener('click', function() {
     console.log('ApplePayButton Clicked');
     const request = {
         countryCode: 'US',
