@@ -13,7 +13,7 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => {res.send('Hello World!')})
+app.get('/', (req, res) => {res.send('Hello World1!')})
 
 app.get('/validate-merchant', async (req, res)  => { 
     try {
@@ -63,12 +63,10 @@ app.post('/authorizeNetApi', async (req, res)  => {
     try {
         const { data } = await axios(authNetConfig);
         res.status(200).json(data);
-        return;
     } catch (err) {
         res
         .status(err?.response?.status || 500)
         .json(err && err.response && err.response.data);
-        return;
     }
 });
 
