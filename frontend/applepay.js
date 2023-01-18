@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Apple Pay request:', request);
 
         const applePaySession = new ApplePaySession(3, request);
-        console.log('Apple Pay Session:', session);
+        console.log('Apple Pay Session:', applePaySession);
 
         //This is the first event that apple triggers. Here you need to validate the
         //Apple pay session from Backend
