@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 merchantSession
             );
             console.log('complete session', applePaySession.completeMerchantValidation(merchantSession?.data));
-            applePaySession.completeMerchantValidation(JSON.parse(merchantSession?.data)); 
+            applePaySession.completeMerchantValidation(merchantSession?.data); 
         };
 
         // Define ApplePayPaymentMethodUpdate based on the selected payment method.
