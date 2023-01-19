@@ -66,14 +66,14 @@ app.post('/validate-merchant', async (req, res)  => {
 });
 
 app.post('/authorizeNetApi', async (req, res)  => {
-    console.log(req?.body); 
+    console.log(req); 
     const reqData = {
         createTransactionRequest: {
             merchantAuthentication: {
             name: '39PR8MKxrTA', //NEXT_AUTHORIZENET_API_LOGIN_ID,
             transactionKey: '5W6zqL84KcK8A4kS' //NEXT_AUTHORIZENET_TRANSACTION_KEY,
             },
-            transactionRequest: req?.body.transactionRequest,
+            transactionRequest: req?.transactionRequest,
         },
     };
     let authNetConfig = {
