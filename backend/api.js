@@ -4,9 +4,14 @@ const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
 var request = require('request');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -19,50 +24,23 @@ app.get('/', (req, res) => {res.send('Hello World1!')});
 app.get('/merchant-session/new', function(req, res) {
     var url = req.query.validationURL || 'https://apple-pay-gateway-cert.apple.com/paymentservices/startSession';
     var options = {
-      method: 'POST',
-      url: url,
-      cert: fs.readFileSync(path.join(__dirname, './certs/marchent_id.pem')),
-      key: fs.readFileSync(path.join(__dirname, './certs/marchent_id.key')),
-      body: {
-        merchantIdentifier: 'merchant.apple.itg.test',
-        displayName: 'Apple Pay Demo',
-        initiative: 'web',
-        initiativeContext: 'apple-pay-g4qy5.ondigitalocean.app'
-      },
-      json: true
+        method: 'POST',
+        url: url,
+        cert: fs.readFileSync(path.join(__dirname, './certs/marchent_id.pem')),
+        key: fs.readFileSync(path.join(__dirname, './certs/marchent_id.key')),
+        body: {
+            merchantIdentifier: 'merchant.apple.itg.test',
+            displayName: 'Apple Pay Demo',
+            initiative: 'web',
+            initiativeContext: 'apple-pay-g4qy5.ondigitalocean.app'
+    },
+    json: true
     };
-  
-    request.post(options, function(error, response, body) {
-      if (error) throw new Error(error)
-      res.send(body);
-    });
-});
 
-app.post('/validate-merchant', async (req, res)  => { 
-    try {
-        const appleUrl = req?.body?.appleUrl || 'https://apple-pay-gateway.apple.com/paymentservices/startSession';
-        // use set the certificates for the POST request
-        httpsAgent = new https.Agent({
-            rejectUnauthorized: false,
-            cert: fs.readFileSync(path.join(__dirname, './certs/marchent_id.pem')),
-            key: fs.readFileSync(path.join(__dirname, './certs/marchent_id.key')),
-        });
-    
-        response = await axios.post(
-            appleUrl,
-            {
-                merchantIdentifier: 'merchant.apple.itg.test',
-                domainName: 'apple-pay-g4qy5.ondigitalocean.app',
-                displayName: 'apple-pay-g4qy5.ondigitalocean.app',
-            },
-            {
-                httpsAgent,
-            }
-        );
-        res.send(response?.data);
-    } catch (error) {
-        console.log('error', error);
-    }
+    request.post(options, function(error, response, body) {
+        if (error) throw new Error(error)
+        res.send(body);
+    });
 });
 
 app.post('/call-payment-provider', async (req, res)  => {
@@ -73,7 +51,7 @@ app.post('/call-payment-provider', async (req, res)  => {
             name: '39PR8MKxrTA', //NEXT_AUTHORIZENET_API_LOGIN_ID,
             transactionKey: '5W6zqL84KcK8A4kS' //NEXT_AUTHORIZENET_TRANSACTION_KEY,
             },
-            transactionRequest: req?.body?.transactionRequest,
+            ...req?.body
         },
     };
     let authNetConfig = {
