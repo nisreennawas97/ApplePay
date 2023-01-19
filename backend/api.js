@@ -44,7 +44,7 @@ app.get('/merchant-session/new', function(req, res) {
 });
 
 app.post('/call-payment-provider', async (req, res)  => {
-    console.log('start reauest', req?.body , 'end request'); 
+    console.log('start reauest', req?.body.transactionRequest.payment.opaqueData.dataValue , 'end request'); 
     const reqData = {
         createTransactionRequest: {
             merchantAuthentication: {
