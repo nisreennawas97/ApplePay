@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 'onvalidatemerchant (checkout) merchantSession:',
                 merchantSession
             );
-            console.log('complete session', applePaySession.completeMerchantValidation(merchantSession));
-            applePaySession.completeMerchantValidation(JSON.parse(merchantSession)); 
+            console.log('complete session', applePaySession.completeMerchantValidation(merchantSession?.data));
+            applePaySession.completeMerchantValidation(JSON.parse(merchantSession?.data)); 
         };
 
         // Define ApplePayPaymentMethodUpdate based on the selected payment method.
