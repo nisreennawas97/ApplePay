@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 'onvalidatemerchant (checkout) merchantSession:',
                 merchantSession
             );
+            console.log('complete session', applePaySession.completeMerchantValidation(merchantSession));
             applePaySession.completeMerchantValidation(merchantSession); 
         };
 
