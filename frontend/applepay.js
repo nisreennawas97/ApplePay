@@ -96,8 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     unitPrice: 10
                 }
             };
-            const body = {
-                transactionRequest: {
+            const transactionRequest = {
                     transactionType: 'authCaptureTransaction',
                     amount: '10',
                     payment: {
@@ -108,12 +107,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     },
                     },
                     lineItems,
-                },
-            };
+                };
 
             const {
                 data: { transactionResponse, messages },
-            } = await axios.post(`${NGROK_HTTPS_HOST}/authorizeNetApi`, body);
+            } = await axios.post(`${NGROK_HTTPS_HOST}/authorizeNetApi`, transactionRequest);
 
             let result = '';
             if (messages.resultCode && messages.resultCode === 'Ok') {
