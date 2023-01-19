@@ -129,8 +129,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     };
                     document.getElementById('success').style.display = 'block';
                 } else {
-                    console.log('error transactionResponse:', transactionResponse);
-                    console.log('error messages:', messages);
+                    console.log('error transactionResponse:', data.transactionResponse);
+                    console.log('error messages:', data.messages);
                     result = {
                         status: ApplePaySession.STATUS_FAILURE,
                     };
