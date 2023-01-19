@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //This will contain the payment token
         applePaySession.onpaymentauthorized = async (event) => {
             console.log('onpaymentauthorized event:', event);
-            const token = event.payment.token.paymentData.data;
+            var token = JSON.stringify(event.payment.token.paymentData);
             console.log('token value', token);
 
             const lineItems = {
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     itemId: '12345',
                     name: 'prod1',
                     quantity: '2',
-                    unitPrice: 10
+                    unitPrice: '10'
                 }
             };
             const body = {
