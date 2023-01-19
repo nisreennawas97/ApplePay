@@ -1,5 +1,5 @@
 var MERCHANT_IDENTIFIER = 'merchant.apple.itg.test';
-const NGROK_HTTPS_HOST = 'https://dd4f-188-161-238-9.ngrok.io';
+const NGROK_HTTPS_HOST = 'https://eb8e-188-161-238-9.ngrok.io';
 
 var appleButton = document.querySelector('.apple-pay-button');
 
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
             total: { 
                 label: 'Product Name', 
-                amount: 10,
+                amount: '10',
                 type: 'final'
             }
         };
@@ -45,21 +45,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
         //This is the first event that apple triggers. Here you need to validate the
         //Apple pay session from Backend
-        applePaySession.onvalidatemerchant = async (event) => {
-            console.log('onvalidatemerchant:', event);
-
-            const merchantSession = await axios.post(
-                `${NGROK_HTTPS_HOST}/validate-merchant`,
-                {
-                    appleUrl: event.validationURL
-                }
-            );
-            console.log(
-                'onvalidatemerchant (checkout) merchantSession:',
-                merchantSession
-            );
-            const completeMerchantValidation = await applePaySession.completeMerchantValidation(merchantSession?.data);
-            console.log('complete session', completeMerchantValidation);
+        applePaySession.onvalidatemerchant = ({ validationURL }) => {
+            console.log('onvalidatemerchant:', validationURL);
+            fetch(`${NGROK_HTTPS_HOST}/merchant-session/new/?validationURL=` + validationURL)
+            .then(res => res.json())
+            .then(data => {
+                console.log(
+                    'onvalidatemerchant (checkout) merchantSession:',
+                    data
+                );
+                applePaySession.completeMerchantValidation(data);
+            });
         };
 
         // Define ApplePayPaymentMethodUpdate based on the selected payment method.

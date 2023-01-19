@@ -3,6 +3,7 @@ const https = require('https');
 const axios = require('axios');
 const fs = require('fs');
 const path = require('path');
+var request = require('request');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -13,7 +14,29 @@ app.use(function(req, res, next) {
     next();
 });
 
-app.get('/', (req, res) => {res.send('Hello World1!')})
+app.get('/', (req, res) => {res.send('Hello World1!')});
+
+app.get('/merchant-session/new', function(req, res) {
+    var url = req.query.validationURL || 'https://apple-pay-gateway-cert.apple.com/paymentservices/startSession';
+    var options = {
+      method: 'POST',
+      url: url,
+      cert: fs.readFileSync(path.join(__dirname, './certs/marchent_id.pem')),
+      key: fs.readFileSync(path.join(__dirname, './certs/marchent_id.key')),
+      body: {
+        merchantIdentifier: 'merchant.apple.itg.test',
+        displayName: 'Apple Pay Demo',
+        initiative: 'web',
+        initiativeContext: 'apple-pay-g4qy5.ondigitalocean.app'
+      },
+      json: true
+    };
+  
+    request.post(options, function(error, response, body) {
+      if (error) throw new Error(error)
+      res.send(body);
+    });
+});
 
 app.post('/validate-merchant', async (req, res)  => { 
     try {
