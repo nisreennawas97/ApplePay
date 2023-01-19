@@ -101,11 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     transactionType: 'authCaptureTransaction',
                     amount: '10',
                     payment: {
-                    opaqueData: {
-                        dataDescriptor: 'COMMON.APPLE.INAPP.PAYMENT',
-                        dataValue: token,
-                        // "1234567890ABCDEF1111AAAA2222BBBB3333CCCC4444DDDD5555EEEE6666FFFF7777888899990",
-                    },
+                        opaqueData: {
+                            dataDescriptor: 'COMMON.APPLE.INAPP.PAYMENT',
+                            dataValue: token,
+                            // "1234567890ABCDEF1111AAAA2222BBBB3333CCCC4444DDDD5555EEEE6666FFFF7777888899990",
+                        },
                     },
                     lineItems,
                 },
