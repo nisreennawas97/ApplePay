@@ -65,7 +65,7 @@ app.post('/validate-merchant', async (req, res)  => {
     }
 });
 
-app.post('/authorizeNetApi', async (req, res)  => {
+app.post('/call-payment-provider', async (req, res)  => {
     console.log('start reauest', req?.body , 'end request'); 
     const reqData = {
         createTransactionRequest: {
@@ -73,7 +73,7 @@ app.post('/authorizeNetApi', async (req, res)  => {
             name: '39PR8MKxrTA', //NEXT_AUTHORIZENET_API_LOGIN_ID,
             transactionKey: '5W6zqL84KcK8A4kS' //NEXT_AUTHORIZENET_TRANSACTION_KEY,
             },
-            transactionRequest: req?.transactionRequest,
+            transactionRequest: req?.body?.transactionRequest,
         },
     };
     let authNetConfig = {

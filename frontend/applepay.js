@@ -111,24 +111,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
             };
 
-            const {
-                data: { transactionResponse, messages },
-            } = await axios.post(`${NGROK_HTTPS_HOST}/authorizeNetApi`, body);
+            fetch(`${NGROK_HTTPS_HOST}/call-payment-provider/`, {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(body)
+              })
+              .then(res => res.json())
+              .then(data => {
+                console.log(data)
+                var status;
+                if (data.Payment.Status) {
+                  status = ApplePaySession.STATUS_SUCCESS;
+                  document.getElementById('success').style.display = "block";
+                } else {
+                  status = ApplePaySession.STATUS_FAILURE;
+                }
+                applePaySession.completePayment(result);;
+              });
+            
+            // const {
+            //     data: { transactionResponse, messages },
+            // } = await axios.post(`${NGROK_HTTPS_HOST}/authorizeNetApi`, body);
 
-            let result = '';
-            if (messages.resultCode && messages.resultCode === 'Ok') {
-                result = {
-                    status: ApplePaySession.STATUS_SUCCESS,
-                };
-                document.getElementById('success').style.display = 'block';
-            } else {
-                console.log('error transactionResponse:', transactionResponse);
-                console.log('error messages:', messages);
-                result = {
-                    status: ApplePaySession.STATUS_FAILURE,
-                };
-            }
-            applePaySession.completePayment(result);
+            // let result = '';
+            // if (messages.resultCode && messages.resultCode === 'Ok') {
+            //     result = {
+            //         status: ApplePaySession.STATUS_SUCCESS,
+            //     };
+            //     document.getElementById('success').style.display = 'block';
+            // } else {
+            //     console.log('error transactionResponse:', transactionResponse);
+            //     console.log('error messages:', messages);
+            //     result = {
+            //         status: ApplePaySession.STATUS_FAILURE,
+            //     };
+            // }
         };
 
         // Payment cancelled by WebKit
