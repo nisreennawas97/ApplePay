@@ -85,9 +85,9 @@ document.addEventListener('DOMContentLoaded', function() {
         //This will contain the payment token
         applePaySession.onpaymentauthorized = async (event) => {
             console.log('onpaymentauthorized event:', event);
-            var token1 = JSON.stringify(event.payment.token.paymentData);
-            const token = window.btoa(token1);
-            console.log('token value', token);
+            const paymentData = JSON.stringify(event.payment.token.paymentData);
+            const base64Token = window.btoa(paymentData);
+            console.log('token value', base64Token);
 
             const lineItems = {
                 lineItem: {
@@ -104,8 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     payment: {
                         opaqueData: {
                             dataDescriptor: 'COMMON.APPLE.INAPP.PAYMENT',
-                            dataValue: token,
-                            // "1234567890ABCDEF1111AAAA2222BBBB3333CCCC4444DDDD5555EEEE6666FFFF7777888899990",
+                            dataValue: base64Token,
                         },
                     },
                     lineItems,
