@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   'Accept': 'application/json',
                   'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(body)
+                body: 'uulhu'
               })
               .then(res => res.json())
               .then(data => {
