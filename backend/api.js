@@ -72,7 +72,7 @@ app.post('/authorizeNetApi', async (req, res)  => {
             name: '39PR8MKxrTA', //NEXT_AUTHORIZENET_API_LOGIN_ID,
             transactionKey: '5W6zqL84KcK8A4kS' //NEXT_AUTHORIZENET_TRANSACTION_KEY,
             },
-            ...req?.body,
+            transactionRequest: req?.body.transactionRequest,
         },
     };
     let authNetConfig = {
