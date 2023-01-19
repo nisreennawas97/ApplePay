@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
         //This will contain the payment token
         applePaySession.onpaymentauthorized = async (event) => {
             console.log('onpaymentauthorized event:', event);
-            const token = btoa(event.payment.token.paymentData.data);
+            const token = btoa(event.payment.token.paymentData);
             console.log('token value', token);
 
             const lineItems = {
