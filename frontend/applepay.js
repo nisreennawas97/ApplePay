@@ -1,5 +1,5 @@
 var MERCHANT_IDENTIFIER = 'merchant.apple.itg.test';
-const NGROK_HTTPS_HOST = 'https://8c96-188-161-238-9.ngrok.io';
+const NGROK_HTTPS_HOST = 'https://dd4f-188-161-238-9.ngrok.io';
 
 var appleButton = document.querySelector('.apple-pay-button');
 
