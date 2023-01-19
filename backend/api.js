@@ -65,7 +65,8 @@ app.post('/validate-merchant', async (req, res)  => {
     }
 });
 
-app.post('/authorizeNetApi', async (req, res)  => { 
+app.post('/authorizeNetApi', async (req, res)  => {
+    console.log(req?.body); 
     const reqData = {
         createTransactionRequest: {
             merchantAuthentication: {
