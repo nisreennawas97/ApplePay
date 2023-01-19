@@ -60,26 +60,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Define ApplePayPaymentMethodUpdate based on the selected payment method.
         // No updates or errors are needed, pass an empty object.
-        applePaySession.onpaymentmethodselected = (event) => {
-            console.log('onpaymentmethodselected:', event);
-            const update = {};
-            applePaySession.completePaymentMethodSelection(update);
-        };
+        // applePaySession.onpaymentmethodselected = (event) => {
+        //     console.log('onpaymentmethodselected:', event);
+        //     const update = {};
+        //     applePaySession.completePaymentMethodSelection(update);
+        // };
 
         // Define ApplePayShippingMethodUpdate based on the selected shipping method.
         // No updates or errors are needed, pass an empty object.
-        applePaySession.onshippingmethodselected = (event) => {
-            console.log('onshippingmethodselected:', event);
-            const update = {};
-            applePaySession.completeShippingMethodSelection(update);
-        };
+        // applePaySession.onshippingmethodselected = (event) => {
+        //     console.log('onshippingmethodselected:', event);
+        //     const update = {};
+        //     applePaySession.completeShippingMethodSelection(update);
+        // };
 
         // Define ApplePayShippingContactUpdate based on the selected shipping contact.
-        applePaySession.onshippingcontactselected = (event) => {
-            console.log('onshippingcontactselected:', event);
-            const update = {};
-            applePaySession.completeShippingContactSelection(update);
-        };
+        // applePaySession.onshippingcontactselected = (event) => {
+        //     console.log('onshippingcontactselected:', event);
+        //     const update = {};
+        //     applePaySession.completeShippingContactSelection(update);
+        // };
 
         //This triggers after the user  has confirmed the transaction with the Touch ID or Face
         //This will contain the payment token
