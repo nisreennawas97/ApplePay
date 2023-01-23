@@ -22,7 +22,7 @@ app.use(function(req, res, next) {
 app.get('/', (req, res) => {res.send('Hello World1!')});
 
 app.get('/merchant-session/new', function(req, res) {
-    var url = req.query.validationURL || 'https://apple-pay-gateway-cert.apple.com/paymentservices/startSession';
+    var url = req.query.validationURL || 'https://apple-pay-gateway.apple.com/paymentservices/startSession';
     var options = {
         method: 'POST',
         url: url,
